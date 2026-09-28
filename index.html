@@ -1,247 +1,955 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivin Mehta — Data Science & Product Analytics</title>
+<meta name="description" content="Data Science & Product Analytics professional based in Bangalore, open to relocation worldwide. 2.5+ years at Meesho (Indian Ecommerce giant) building ML-driven pricing, personalisation, discovery & logistics models." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf8;
+    --surface:#ffffff;
+    --ink:#141414;
+    --muted:#6b6b6b;
+    --line:#e8e6e1;
+    --accent:#3b6ef5;
+    --accent-soft:#eef3ff;
+    --accent-deep:#24417f;
+    --impact-bg:linear-gradient(135deg,#eef3ff 0%,#f5f8ff 100%);
+    --mint:#e2f5ec;
+    --peach:#ffe9d6;
+    --radius:16px;
+    --maxw:1120px;
+    --code-bg:#f4f4f1;
+  }
 
-<html>
-	<head>
-		<title>Shivin Mehta Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+  html[data-theme="dark"]{
+    --bg:#0e0e10;
+    --surface:#17171a;
+    --ink:#f2f2f2;
+    --muted:#9a9a9f;
+    --line:#26262b;
+    --accent:#6d95ff;
+    --accent-soft:#1a2138;
+    --accent-deep:#b8c9ff;
+    --impact-bg:linear-gradient(135deg,#1a2138 0%,#141a2b 100%);
+    --mint:#12352a;
+    --peach:#3a2415;
+    --code-bg:#1f1f24;
+  }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    transition:background .4s ease,color .4s ease;
+  }
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Shivin Mehta</h1> 
-							<h1>Portfolio<br />
-						</h1>
-						<p>Eager and analytical, I'm a budding data analyst with proficiency in Python, SQL, Excel, data visualization tools and a knack for transforming raw data into actionable insights that drive informed decisions.
-						</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+  /* Abstract background */
+  .bg-shapes{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+  .shape{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;transition:opacity .5s;}
+  .s1{width:480px;height:480px;background:#dce6ff;top:-160px;right:-140px;}
+  .s2{width:400px;height:400px;background:var(--peach);bottom:8%;left:-160px;}
+  .s3{width:340px;height:340px;background:var(--mint);top:42%;right:-140px;}
+  .s4{width:280px;height:280px;background:#f0e6ff;top:70%;left:20%;opacity:.4;}
+  html[data-theme="dark"] .s1{background:#1b2a5c;opacity:.5;}
+  html[data-theme="dark"] .s2{background:#3a2415;opacity:.5;}
+  html[data-theme="dark"] .s3{background:#12352a;opacity:.5;}
+  html[data-theme="dark"] .s4{background:#2a1b3d;opacity:.4;}
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Welcome</a>
-					</header>
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Projects</a></li>
-							
-						</ul>
-						<ul class="icons">
-							<li><a href="https://drive.google.com/file/d/1BJZisfUQvk-CJejhT9WZrCnN5AvNBHPw/view?usp=drive_link"  target="_blank" class="fa fa-file-text-o"><span class="label">Resume</span></a></li>
-							<li><a href="https://www.linkedin.com/in/shivin-mehta-481a65202/"  target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/shivin316"  target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>						</ul>
-					</nav>
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:color-mix(in srgb,var(--bg) 72%,transparent);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s,background .3s;
+  }
+  nav.scrolled{border-bottom-color:var(--line);}
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  .logo{font-weight:800;font-size:1.05rem;letter-spacing:-.03em;white-space:nowrap;}
+  .logo span{color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .nav-links{display:flex;gap:24px;align-items:center;}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ink);color:var(--bg) !important;padding:8px 18px;
+    border-radius:99px;font-weight:600;font-size:.82rem !important;
+    transition:all .25s !important;
+  }
+  .nav-cta:hover{background:var(--accent);transform:translateY(-1px);color:#fff !important;}
 
-				<!-- Main -->
-					<div id="main">
+  /* THEME TOGGLE */
+  .theme-toggle{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--surface);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .3s;color:var(--ink);
+    position:relative;overflow:hidden;
+  }
+  .theme-toggle:hover{border-color:var(--accent);transform:rotate(15deg) scale(1.05);}
+  .theme-toggle svg{width:17px;height:17px;transition:transform .4s;}
+  .theme-toggle .sun{display:block;}
+  .theme-toggle .moon{display:none;}
+  html[data-theme="dark"] .theme-toggle .sun{display:none;}
+  html[data-theme="dark"] .theme-toggle .moon{display:block;}
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									
-									<h2><a href="https://github.com/shivin316/8__Week_SQL_Challenge" target="_blank">8 Week SQL Challenge<br />
-									</a></h2>
-									<p>In this project I solved 8 different case studies created by Danny Ma using MySQL 8.0 and PostgreSQL 15.3</p>
-								</header>
-								<a href="https://github.com/shivin316/8__Week_SQL_Challenge" target="_blank" class="image main"><img src="images/kisspng-sql-database-computer-icons-download-sql-icon-5b3ed4c9cc9013.8225606715308443618379.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="https://github.com/shivin316/8__Week_SQL_Challenge" target="_blank" class="button large">View Project</a></li>
-								</ul>
-							</article>
+  @media(max-width:820px){
+    .nav-links a:not(.nav-cta){display:none;}
+  }
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										
-										<h2><a href="https://github.com/shivin316/EDA-on-IPL-Dataset-2008-2022" target="_blank">Python Project<br />
-										Exploratory Data Analysis</a></h2>
-									</header>
-									<a href="https://github.com/shivin316/EDA-on-IPL-Dataset-2008-2022" target="_blank" class="image fit"><img src="images/wp7104495.jpg" alt="" /></a>
-									<p>In this project i performed Exploratory Data Analysis (EDA)
-									using python modules like pandas, numpy, matplotlib and Seaborn on IPL 2008-2022 Dataset</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/shivin316/EDA-on-IPL-Dataset-2008-2022" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="https://github.com/shivin316/EDA-on-JOSAA-dataset " target="_blank">Python Project<br />
-										Exploratory Data Analysis</a></h2>
-									</header>
-									<a href="https://github.com/shivin316/EDA-on-JOSAA-dataset" target="_blank" class="image fit"><img src="images/unnamed.png" height="280" width="700" alt="" /></a>
-									<p>In this project i performed Exploratory Data Analysis (EDA)
-										using python modules like pandas, numpy, matplotlib and Seaborn on JOSAA dataset 2022</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/shivin316/EDA-on-JOSAA-dataset" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="https://public.tableau.com/app/profile/shivin.mehta" target="_blank">Tableau Projects<br />
-										</a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/shivin.mehta" target="_blank" class="image fit"><img src="images/Tableau-Emblem.png" alt="" /></a>
-									<p style="text-align:center;">This holds all of my Tableau Projects</p>
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/shivin.mehta" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="https://drive.google.com/drive/folders/1Lpkmzry5oCH5V-MTvdwF20I72mlnJ6H7?usp=sharing" target="_blank">Power Bi Projects<br />
-										</a></h2>
-									</header>
-									<a href="https://drive.google.com/drive/folders/1Lpkmzry5oCH5V-MTvdwF20I72mlnJ6H7?usp=sharing" target="_blank" class="image fit"><img src="images/Power-BI-Symbol.png" height="250"  alt="" /></a>
-									<p style="text-align:center;">This holds all of my Power Bi Projects </p>
-									<ul class="actions special">
-										<li><a href="https://drive.google.com/drive/folders/1Lpkmzry5oCH5V-MTvdwF20I72mlnJ6H7?usp=sharing" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-									
-										<h2><a href="https://github.com/shivin316/Netflix_Exploratory_Data_Analysis" target="_blank">Python Project<br />
-											Exploratory Data Analysis</a></h2>
-									</header>
-									<a href="https://github.com/shivin316/Netflix_Exploratory_Data_Analysis" target="_blank" class="image fit"><img src="images/Netflix_2015_logo.svg.png" height="280" width="700" alt="" /></a>
-									<p>In this project i performed Exploratory Data Analysis (EDA)
-										using python modules like pandas, numpy, matplotlib, Plotly and Seaborn on Netflix dataset</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/shivin316/Netflix_Exploratory_Data_Analysis" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-									
-										<h2><a href="https://github.com/shivin316/museum_SQL_case_study" target="_blank">SQL Project<br />
-											Art Museum Case Study </a></h2>
-									</header>
-									<a href="https://github.com/shivin316/museum_SQL_case_study" target="_blank" class="image fit"><img src="images/art.jpg" height="280" width="700" alt="" /></a>
-									<p>In this project i performed a case study using PostgreSQL on an art museum dataset to uncover insightful trends and patterns</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/shivin316/museum_SQL_case_study" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-							</section>
-								<!-- <article>
-									<header>
-										<span class="date">April 11, 2017</span>
-										<h2><a href="#">Odio magna<br />
-										sed consectetur</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="#">Augue lorem<br />
-										primis vestibulum</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-							</section>
+  /* HERO */
+  header{padding:100px 0 70px;position:relative;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent-soft);color:var(--accent);
+    font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:7px 15px;border-radius:99px;margin-bottom:26px;
+    text-transform:uppercase;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
+  h1{
+    font-size:clamp(2.3rem,5.3vw,3.9rem);
+    font-weight:800;letter-spacing:-.035em;line-height:1.07;
+    margin-bottom:26px;max-width:920px;
+  }
+  h1 em{font-style:normal;color:var(--accent);}
+  .lead{
+    font-size:clamp(1rem,1.8vw,1.15rem);
+    color:var(--muted);max-width:700px;margin-bottom:22px;font-weight:400;line-height:1.7;
+  }
+  .lead strong{color:var(--ink);font-weight:600;}
+  .location-line{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.88rem;color:var(--muted);font-weight:500;
+    margin-bottom:34px;padding:8px 16px;border:1px dashed var(--line);border-radius:99px;
+    background:var(--surface);
+  }
+  .location-line .pin{color:var(--accent);}
+  .location-line .globe{color:var(--accent);}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:99px;font-size:.9rem;font-weight:600;
+    text-decoration:none;transition:all .25s;border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--bg);}
+  .btn-primary:hover{background:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 10px 28px rgba(59,110,245,.28);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
 
-						Footer
-							<footer>
-								<div class="pagination">
-									<a href="#" class="previous">Prev</a>
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+  /* HERO STATS */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;margin:60px 0 0;
+  }
+  .stat{background:var(--surface);padding:26px 22px;transition:background .3s;}
+  .stat:hover{background:var(--accent-soft);}
+  .stat-num{
+    font-size:1.85rem;font-weight:800;letter-spacing:-.035em;color:var(--ink);
+    display:flex;align-items:baseline;gap:2px;
+  }
+  .stat-num .unit{font-size:1.1rem;color:var(--accent);font-weight:700;}
+  .stat-label{font-size:.78rem;color:var(--muted);font-weight:500;margin-top:4px;line-height:1.4;}
 
-					</div>
+  /* ABOUT */
+  .about-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:40px;
+    position:relative;overflow:hidden;
+  }
+  .about-card::before{
+    content:'”';position:absolute;top:-30px;right:20px;
+    font-size:12rem;color:var(--accent);opacity:.06;
+    font-family:Georgia,serif;line-height:1;
+  }
+  .about-card p{
+    font-size:1.02rem;color:var(--ink);line-height:1.85;margin-bottom:18px;
+    position:relative;z-index:1;
+  }
+  .about-card p:last-child{margin-bottom:0;}
+  .about-card strong{color:var(--accent);font-weight:700;}
+  .about-card .highlight{
+    background:linear-gradient(120deg,transparent 0%,var(--accent-soft) 0%,var(--accent-soft) 100%,transparent 100%);
+    padding:2px 6px;border-radius:4px;font-weight:600;
+  }
 
-				Footer
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section> -->
-					<footer id='footer'>
-						<section class="split contact">
-							<section class="alt" >
-								<h3 >Address</h3>
-								<p style="text-align:center;">Jaipur , Rajasthan , India</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p style="text-align:center;">+91 8114450391</p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p style="text-align:center;">shivinmehta2@gmail.com</p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/shivin-mehta-481a65202/"  target="_blank" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/shivin316"  target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+  /* SECTIONS */
+  section{padding:88px 0;}
+  .section-tag{
+    font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:14px;
+  }
+  h2{
+    font-size:clamp(1.7rem,3.8vw,2.4rem);font-weight:800;
+    letter-spacing:-.025em;margin-bottom:16px;line-height:1.15;
+  }
+  .section-sub{color:var(--muted);max-width:640px;margin-bottom:48px;font-size:1rem;}
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+  /* PROMOTION LADDER */
+  .promo-strip{
+    display:flex;gap:0;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:8px;margin-bottom:32px;
+  }
+  .promo-step{
+    flex:1;min-width:160px;padding:18px 16px;border-radius:12px;
+    position:relative;transition:all .3s;cursor:default;
+  }
+  .promo-step:hover{background:var(--accent-soft);}
+  .promo-step:not(:last-child)::after{
+    content:'→';position:absolute;right:-4px;top:50%;transform:translateY(-50%);
+    color:var(--muted);font-weight:600;font-size:.9rem;opacity:.5;
+  }
+  @media(max-width:820px){.promo-step:not(:last-child)::after{display:none;}}
+  .promo-role{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
+  .promo-title{font-size:.95rem;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin-bottom:4px;}
+  .promo-date{font-size:.75rem;color:var(--muted);font-weight:500;}
 
-			</div>
+  /* EXPERIENCE CARDS */
+  .timeline{position:relative;}
+  .exp-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:34px;margin-bottom:18px;
+    transition:all .35s;position:relative;overflow:hidden;
+  }
+  .exp-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent);transform:scaleY(0);transform-origin:top;
+    transition:transform .4s;
+  }
+  .exp-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.06);border-color:#d5dcef;}
+  html[data-theme="dark"] .exp-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.5);border-color:#2f3a5c;}
+  .exp-card:hover::before{transform:scaleY(1);}
+  .exp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:6px;align-items:baseline;}
+  .exp-role{font-size:1.18rem;font-weight:800;letter-spacing:-.015em;}
+  .exp-date{font-size:.78rem;color:var(--muted);font-weight:600;background:var(--bg);padding:5px 13px;border-radius:99px;white-space:nowrap;border:1px solid var(--line);}
+  .exp-company{font-size:.92rem;color:var(--accent);font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:8px;}
+  .exp-company::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .exp-block{margin-bottom:18px;}
+  .exp-block:last-child{margin-bottom:0;}
+  .exp-block h4{
+    font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:8px;
+  }
+  .exp-block p{font-size:.92rem;color:var(--ink);line-height:1.7;opacity:.9;}
+  .exp-block ul{list-style:none;}
+  .exp-block li{
+    font-size:.92rem;color:var(--ink);opacity:.9;padding-left:22px;position:relative;
+    margin-bottom:9px;line-height:1.65;
+  }
+  .exp-block li::before{
+    content:'';position:absolute;left:0;top:.6em;
+    width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  .exp-block li strong{color:var(--ink);font-weight:700;opacity:1;}
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+  .impact{
+    background:var(--impact-bg);
+    border-left:3px solid var(--accent);
+    border-radius:0 12px 12px 0;padding:16px 20px;margin-top:20px;
+    font-size:.9rem;color:var(--accent-deep);font-weight:500;line-height:1.65;
+  }
+  .impact strong{color:var(--accent);font-weight:800;}
+  .metric{
+    display:inline-block;background:rgba(59,110,245,.14);
+    color:var(--accent-deep);font-weight:700;padding:1px 8px;
+    border-radius:6px;font-size:.88em;
+  }
+  html[data-theme="dark"] .metric{background:rgba(109,149,255,.18);}
 
-	</body>
+  /* ML badge row */
+  .ml-row{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;
+  }
+  .ml-chip{
+    font-size:.7rem;font-weight:700;letter-spacing:.02em;
+    background:rgba(109,149,255,.12);color:var(--accent);
+    padding:4px 10px;border-radius:6px;border:1px solid rgba(59,110,245,.2);
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .ml-chip::before{content:'◆';font-size:.6em;opacity:.7;}
+
+  /* Meme callout */
+  .meme{
+    display:flex;align-items:flex-start;gap:12px;
+    background:var(--code-bg);border:1px dashed var(--line);
+    border-radius:12px;padding:12px 16px;margin-top:18px;
+    font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.55;
+  }
+  .meme .meme-emoji{
+    font-style:normal;font-size:1.1rem;flex-shrink:0;line-height:1.3;
+  }
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+  .project{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:28px;
+    transition:all .3s;cursor:pointer;position:relative;text-decoration:none;color:inherit;
+    display:block;
+  }
+  .project:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,.07);border-color:#d5dcef;}
+  html[data-theme="dark"] .project:hover{box-shadow:0 18px 48px rgba(0,0,0,.55);border-color:#2f3a5c;}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+  .proj-icon{
+    width:44px;height:44px;border-radius:12px;background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;font-size:1.25rem;
+    transition:transform .3s;
+  }
+  .project:hover .proj-icon{transform:scale(1.08) rotate(-4deg);}
+  .proj-arrow{color:var(--muted);transition:all .3s;font-size:1.1rem;}
+  .project:hover .proj-arrow{color:var(--accent);transform:translate(3px,-3px);}
+  .project h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;}
+  .project p{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-size:.72rem;font-weight:600;color:var(--muted);
+    background:var(--bg);border:1px solid var(--line);
+    padding:4px 10px;border-radius:6px;transition:all .25s;
+  }
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+  .skill-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;transition:all .3s;
+  }
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(59,110,245,.08);}
+  .skill-card h3{
+    font-size:.95rem;font-weight:800;margin-bottom:14px;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .skill-card h3::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .skill-card:hover .tags .tag{background:var(--accent-soft);color:var(--accent);border-color:transparent;}
+
+  /* EDUCATION */
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+  .edu-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;transition:all .3s;
+  }
+  .edu-card:hover{border-color:#d5dcef;transform:translateY(-2px);}
+  .edu-card h3{font-size:1rem;font-weight:800;margin-bottom:6px;letter-spacing:-.01em;}
+  .edu-card .meta{font-size:.85rem;color:var(--muted);margin-bottom:10px;}
+  .edu-card .highlight{font-size:.9rem;color:var(--accent);font-weight:700;}
+
+  /* CONTACT */
+  .contact{
+    background:var(--ink);border-radius:24px;padding:72px 40px;text-align:center;
+    position:relative;overflow:hidden;margin-bottom:40px;
+  }
+  html[data-theme="dark"] .contact{background:#050507;border:1px solid var(--line);}
+  .contact::after{
+    content:'';position:absolute;width:480px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(59,110,245,.4),transparent 70%);
+    top:-240px;right:-120px;pointer-events:none;
+  }
+  .contact::before{
+    content:'';position:absolute;width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(226,245,236,.15),transparent 70%);
+    bottom:-200px;left:-100px;pointer-events:none;
+  }
+  .contact h2{color:var(--bg);position:relative;z-index:1;font-size:clamp(1.8rem,4vw,2.6rem);}
+  html[data-theme="dark"] .contact h2{color:#fff;}
+  .contact p{color:#aaa;max-width:520px;margin:0 auto 34px;position:relative;z-index:1;font-size:1rem;}
+  .contact .cta-row{justify-content:center;position:relative;z-index:1;}
+  .contact .btn-primary{background:var(--bg);color:var(--ink);}
+  .contact .btn-primary:hover{background:var(--accent);color:#fff;}
+  .contact .btn-ghost{color:var(--bg);border-color:#3a3a3a;}
+  html[data-theme="dark"] .contact .btn-ghost{color:#fff;}
+  .contact .btn-ghost:hover{border-color:var(--bg);transform:translateY(-2px);}
+  html[data-theme="dark"] .contact .btn-ghost:hover{border-color:#fff;}
+
+  footer{
+    padding:32px 0;border-top:1px solid var(--line);
+    font-size:.85rem;color:var(--muted);
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer a{color:var(--muted);text-decoration:none;transition:color .2s;font-weight:500;}
+  footer a:hover{color:var(--accent);}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media(max-width:640px){
+    header{padding:64px 0 50px;}
+    section{padding:60px 0;}
+    .exp-card,.project,.skill-card,.edu-card,.about-card{padding:22px;}
+    .contact{padding:52px 24px;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-shapes">
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
+  <div class="shape s4"></div>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="logo">Shivin Mehta<span>.</span></div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Data Science &amp; Product Analytics · Open to opportunities</div>
+    <h1>I build <em>machine learning and analytics systems</em> that move real business metrics.</h1>
+    <p class="lead">
+      I sit at the intersection of <strong>data science, product analytics, and business strategy</strong> —
+      translating messy behavioural and transactional data into models, experiments and decisions that
+      shape how millions of users shop, discover and buy. Currently driving pricing, personalisation
+      and quality analytics at Meesho, one of India’s leading e-commerce platforms. 
+    </p>
+    <div class="location-line">
+      <span class="pin">📍</span> Based in Bangalore, India
+      <span style="opacity:.4">·</span>
+      <span class="globe">🌍</span> Open to relocation anywhere in the world
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#experience">See my impact →</a>
+      <a class="btn btn-ghost" href="#about">About me</a>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat-num"><span data-count="2.5">0</span><span class="unit">+ yrs</span></div>
+        <div class="stat-label">Applied DS &amp; Analytics at Meesho</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="4">0</span></div>
+        <div class="stat-label">Roles held so far</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="150">0</span><span class="unit">M+</span></div>
+        <div class="stat-label">Orders analyzed </div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="100">0</span><span class="unit">+</span></div>
+        <div class="stat-label">Python & SQL pipelines deployed</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-tag">About Me</div>
+    <h2>The short version? I make data <em style="font-style:normal;color:var(--accent)">behave.</em></h2>
+    <p class="section-sub">A professional summary of how I think about analytics, ML and product impact.</p>
+
+    <div class="about-card reveal">
+      <p>
+        I'm a <strong>data scientist and product analyst</strong> with 2.5+ years of applied experience
+        at Meesho,one of India’s leading e-commerce platforms where I've been promoted through four roles in under three years.
+        My work spans the full analytics stack — <span class="highlight">SQL and Python at depth</span>,
+        <span class="highlight">machine learning for ranking, prediction and recommendation</span>,
+        <span class="highlight">A/B testing and causal inference</span>, and
+        <span class="highlight">BI tooling that stakeholders actually open</span>.
+      </p>
+      <p>
+        I don't just report what happened — I build systems that change what happens next. Whether it's
+        re-engineering a ranking algorithm to surface higher-quality products, modelling weight from
+        product names when the catalogue can't be trusted, or identifying fraudulent users through
+        behavioural signals, my north star is always the same: <strong>does this move a real business metric?</strong>
+      </p>
+      <p>
+        I thrive in ambiguity — the 0-to-1 charters, the messy datasets, the "we don't know why this
+        number moved" Slack pings. I partner tightly with product, ops and business teams, and I
+        believe the best analytics is the kind that makes everyone around the table smarter.
+      </p>
+      <p style="font-size:.95rem;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:20px;">
+        <strong style="color:var(--accent)">Based in Bangalore, India</strong> — open to relocation anywhere around the world.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-tag">Work Experience</div>
+    <h2>What I did, how I did it,<br>and the impact it created.</h2>
+    <p class="section-sub">
+      Four roles in 2.5 years at Meesho — each with a distinct mandate, each measured by outcomes,
+      each with real ML and analytics muscle behind it.
+    </p>
+
+    <div class="promo-strip reveal">
+      <div class="promo-step">
+        <div class="promo-role">Role 01</div>
+        <div class="promo-title">Business Analyst Intern </div>
+        <div class="promo-date">Jan 2024 – Jun 2024</div>
+      </div>
+      <div class="promo-step">
+        <div class="promo-role">Role 02</div>
+        <div class="promo-title">BA I — Hardlines, New Categories &amp; Sale</div>
+        <div class="promo-date">Jul 2024 – Dec 2024</div>
+      </div>
+      <div class="promo-step">
+        <div class="promo-role">Role 03</div>
+        <div class="promo-title">BA II — Heavyweight Pricing, Discovery &amp; Logistics</div>
+        <div class="promo-date">Jan 2025 – Dec 2025</div>
+      </div>
+      <div class="promo-step">
+        <div class="promo-role">Role 04</div>
+        <div class="promo-title">Senior BA — Product Quality &amp; Personalisation</div>
+        <div class="promo-date">Jan 2026 – Present</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- ROLE 4 -->
+      <div class="exp-card reveal">
+        <div class="exp-head">
+          <div class="exp-role">Senior Business Analyst — Product Quality &amp; Personalisation</div>
+          <div class="exp-date">Jan 2026 – Present</div>
+        </div>
+        <div class="exp-company">Meesho · Bangalore, India</div>
+
+        <div class="exp-block">
+          <h4>The What</h4>
+          <p>Own the quality and personalisation layer of a marketplace serving hundreds of millions of users — redesigning how products are ranked and recommended so buyers see higher-quality items first and sellers get rewarded for quality.</p>
+        </div>
+
+        <div class="exp-block">
+          <h4>The How</h4>
+          <ul>
+            <li>Rebuilt the product ranking algorithm to incorporate a <strong>per-user quality signal</strong>, modelled from the share of negative ratings a product accumulates — a lightweight, interpretable risk score that updates continuously.</li>
+            <li>Built a <strong>personalisation layer</strong> using a content-based recommender over product attributes (size, colour, material) that users signal preference for through pre-purchase behaviour.</li>
+            <li>Applied <strong>computer vision / multimedia quality signals</strong> (via adoption of user-submitted photos and videos) to enrich the item representation and improve buyers' pre-purchase confidence.</li>
+            <li>Ran counterfactual and holdout experiments to isolate the causal effect of each change — separating ranking signal lift from seasonality and catalogue mix.</li>
+          </ul>
+          <div class="ml-row">
+            <span class="ml-chip">Ranking algorithms</span>
+            <span class="ml-chip">Recommender systems</span>
+            <span class="ml-chip">Counterfactual analysis</span>
+            <span class="ml-chip">Holdout experiments</span>
+            <span class="ml-chip">Behavioural signals</span>
+          </div>
+        </div>
+
+        <div class="impact">
+          <strong>Impact:</strong> Cut the platform-wide <span class="metric">negative-rating rate by 0.8 pp</span> via the ranking redesign,
+          <span class="metric">a further 0.4 pp</span> via personalised feeds, and <span class="metric">1 pp more</span> through
+          user-generated media — a <strong>compounding ~2.2 pp quality improvement equivalent to 15 % drop in negative ratings</strong> across the marketplace, one of the largest
+          single-team quality wins of the year.
+        </div>
+
+        <div class="meme">
+          <span class="meme-emoji">🧠</span>
+          <span>Me: "Let's add a quality signal to the ranking." Product: "Will it hurt GMV?" Me: "No, it'll help both quality <em>and</em> GMV." Product: "Cool, ship it." — this conversation happens approximately once per quarter, and I live for it.</span>
+        </div>
+      </div>
+
+      <!-- ROLE 3 -->
+      <div class="exp-card reveal">
+        <div class="exp-head">
+          <div class="exp-role">Business Analyst II — Heavyweight Pricing, Discovery &amp; Logistics</div>
+          <div class="exp-date">Jan 2025 – Dec 2025</div>
+        </div>
+        <div class="exp-company">Meesho · Bangalore, India</div>
+
+        <div class="exp-block">
+          <h4>The What</h4>
+          <p>Led analytics for the 0-to-1 charter of Heavyweight products (5 kg+) — building the pricing, discovery, and logistics foundation for a category that didn't exist before. Think furniture, large appliances, and everything that breaks your back and your delivery SLA.</p>
+        </div>
+
+        <div class="exp-block">
+          <h4>The How</h4>
+          <ul>
+            <li>Designed and ran <strong>discovery experiments</strong> to grow the category from 0 to over 1% of total orders, using uplift modelling to prioritise which interventions actually mattered.</li>
+            <li>Built a <strong>product-name-based weight extraction model</strong> — a text-mining + regression pipeline that predicts shipping weight from unstructured product titles, since the catalogue weight field was 3–40% accurate at best.</li>
+            <li>Applied <strong>unsupervised anomaly detection</strong> (clustering + behavioural fingerprinting) to identify fraudulent users and low-performing delivery areas, then restricted their product visibility — a targeted intervention that cut return-to-origin (RTO) incidents sharply.</li>
+            <li>Ran deep dives into central pricing models using <strong>regression analysis and leakage diagnostics</strong>, surfacing structural pricing leaks that drove org-wide fixes.</li>
+            <li>Built a central analytics dashboard and <strong>single-source-of-truth data table</strong> (dimensional model in Snowflake/Databricks) that became the category team's default reference.</li>
+          </ul>
+          <div class="ml-row">
+            <span class="ml-chip">Uplift modelling</span>
+            <span class="ml-chip">NLP for feature extraction</span>
+            <span class="ml-chip">Clustering &amp; anomaly detection</span>
+            <span class="ml-chip">Regression analysis</span>
+            <span class="ml-chip">Dimensional modelling</span>
+          </div>
+        </div>
+
+        <div class="impact">
+          <strong>Impact:</strong> Grew Heavyweight's share of total platform NMV by
+          <span class="metric">0.7 pp, equivalent to 88% increase </span> and proved PMF in Large Furniture product category;
+          lifted weight accuracy from <span class="metric">3–40% → 70%+</span>;
+          reduced failed-delivery returns (RTO) by <span class="metric">5 pp, equivalent to 40% drop</span> through fraud detection;
+          and triggered organisation-wide fixes on pricing leakages.
+        </div>
+
+        <div class="meme">
+          <span class="meme-emoji">📦</span>
+          <span>Building a weight-prediction model from product titles is peak "the data doesn't exist, so I'll create it" energy. Also: the number of sellers who write "1kg" in a 40kg sofa listing is not zero, and I have the receipts.</span>
+        </div>
+      </div>
+
+      <!-- ROLE 2 -->
+      <div class="exp-card reveal">
+        <div class="exp-head">
+          <div class="exp-role">Business Analyst I — Hardlines, New Categories &amp; Sale</div>
+          <div class="exp-date">Jul 2024 – Dec 2024</div>
+        </div>
+        <div class="exp-company">Meesho · Bangalore, India</div>
+
+        <div class="exp-block">
+          <h4>The What</h4>
+          <p>Owned category analytics for Home &amp; Accessories (30% of platform orders) and led measurement for the platform's largest sale event of 2024.</p>
+        </div>
+
+        <div class="exp-block">
+          <h4>The How</h4>
+          <ul>
+            <li>Led category analytics for Home &amp; Accessories, a portfolio contributing <strong>30% of total platform orders</strong> — responsible for weekly performance, cohort tracking and category health reporting.</li>
+            <li>Spearheaded analytics for the platform's <strong>first-ever launch of high-ASP electronics</strong> (smartphones, TVs, ACs, fridges, washing machines) — building demand forecasts, price-elasticity views and launch KPIs from scratch.</li>
+            <li>Built dashboards monitoring category health and <strong>KPI progress against plan</strong>, replacing ad-hoc spreadsheet reporting with self-serve BI.</li>
+            <li>Used <strong>time-series forecasting</strong> to model sale-event demand and inform inventory and logistics readiness.</li>
+          </ul>
+          <div class="ml-row">
+            <span class="ml-chip">Time-series forecasting</span>
+            <span class="ml-chip">Price elasticity</span>
+            <span class="ml-chip">Cohort analysis</span>
+            <span class="ml-chip">KPI tracking</span>
+          </div>
+        </div>
+
+        <div class="impact">
+          <strong>Impact:</strong> Powered the 2024 sale event that set a new platform record with
+          <span class="metric">150M+ orders on Day 1</span>; unlocked a brand-new high-ASP electronics
+          category that had never existed on the platform.
+        </div>
+
+        <div class="meme">
+          <span class="meme-emoji">⚡</span>
+          <span>Launching a new category and a record-breaking sale event in the same quarter is the analytics equivalent of being asked to cook a 5-course meal while the kitchen is on fire. The dashboards held. Mostly.</span>
+        </div>
+      </div>
+
+      <!-- ROLE 1 -->
+      <div class="exp-card reveal">
+        <div class="exp-head">
+          <div class="exp-role">Business Analyst Intern </div>
+          <div class="exp-date">Jan 2024 – Jun 2024</div>
+        </div>
+        <div class="exp-company">Meesho · Bangalore, India</div>
+
+        <div class="exp-block">
+          <h4>The What</h4>
+          <p>Analytical foundation role — diagnosing why key marketplace metrics were moving and translating findings into action plans for cross-functional teams.</p>
+        </div>
+
+        <div class="exp-block">
+          <h4>The How</h4>
+          <ul>
+            <li>Conducted <strong>root cause analysis (RCA)</strong> on movements in Net Merchandise Value (NMV) and Monthly Active Users (MAU) — decomposing metrics to isolate which user segments, categories and geographies drove change.</li>
+            <li>Developed <strong>data-driven strategies and analytical models</strong> to improve category performance, partnering with product and ops to translate insights into shipped interventions.</li>
+            <li>Collaborated with cross-functional teams to design and execute <strong>action plans</strong> for identified problems — closing the loop from insight to outcome.</li>
+          </ul>
+          <div class="ml-row">
+            <span class="ml-chip">Metric decomposition</span>
+            <span class="ml-chip">Segmentation</span>
+            <span class="ml-chip">Root cause analysis</span>
+          </div>
+        </div>
+
+        <div class="impact">
+          <strong>Impact:</strong> Improved category performance through data-driven strategies and
+          established the RCA discipline that underpinned every subsequent promotion — the foundation
+          years of a very steep learning curve.
+        </div>
+
+        <div class="meme">
+          <span class="meme-emoji">🔍</span>
+          <span>First six months as an analyst: "The metric moved." Me: "Why?" Everyone: "We don't know." Me, three weeks and 40 SQL queries later: "Here's why, in this 6-slide deck." That's the job, and I love it.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-tag">Selected Projects</div>
+    <h2>Analytics work with a point of view.</h2>
+    <p class="section-sub">Personal and case-study work that sharpened the SQL, Python and ML foundations behind the day job.</p>
+
+    <div class="projects-grid">
+
+      <div class="project reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🧮</div>
+          <div class="proj-arrow">↗</div>
+        </div>
+        <h3>8-Week SQL Challenge</h3>
+        <p>Solved 8 real-world case studies by Danny Ma covering data extraction, transformation, reporting and query optimisation using MySQL and PostgreSQL.</p>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Query Optimization</span></div>
+      </div>
+
+      <div class="project reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🏏</div>
+          <div class="proj-arrow">↗</div>
+        </div>
+        <h3>IPL 2008–2022 EDA</h3>
+        <p>End-to-end exploratory data analysis extracting insights on player performance, team trends and match outcomes across 15 seasons.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Seaborn</span></div>
+      </div>
+
+      <div class="project reveal">
+        <div class="proj-top">
+          <div class="proj-icon">📊</div>
+          <div class="proj-arrow">↗</div>
+        </div>
+        <h3>Interactive BI Dashboards</h3>
+        <p>Designed interactive dashboards in Power BI and Tableau to surface insights and support business decision-making across domains.</p>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">DAX</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-tag">Toolkit</div>
+    <h2>The stack I think in.</h2>
+    <p class="section-sub">A modern DS + analytics toolkit spanning experimentation, ML, warehousing and BI.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Analytics &amp; Experimentation</h3>
+        <div class="tags">
+          <span class="tag">A/B testing</span><span class="tag">Hypothesis testing</span>
+          <span class="tag">Regression analysis</span><span class="tag">Cohort analysis</span>
+          <span class="tag">Funnel analysis</span><span class="tag">Root cause analysis</span>
+          <span class="tag">KPI design &amp; tracking</span><span class="tag">EDA</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Programming</h3>
+        <div class="tags">
+          <span class="tag">Python (advanced)</span><span class="tag">Pandas</span>
+          <span class="tag">NumPy</span><span class="tag">scikit-learn</span>
+          <span class="tag">Plotly</span><span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span><span class="tag">SQL (advanced)</span>
+          <span class="tag">Web scraping</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Machine Learning</h3>
+        <div class="tags">
+          <span class="tag">Supervised &amp; unsupervised</span><span class="tag">Classification</span>
+          <span class="tag">Regression</span><span class="tag">Clustering</span>
+          <span class="tag">Ranking &amp; recommender systems</span><span class="tag">Time series forecasting</span>
+          <span class="tag">Feature engineering</span><span class="tag">PCA</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Data Warehousing</h3>
+        <div class="tags">
+          <span class="tag">Snowflake</span><span class="tag">Databricks</span>
+          <span class="tag">SparkSQL</span><span class="tag">PrestoDB</span>
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          <span class="tag">dbt</span><span class="tag">Apache Airflow</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>BI &amp; Visualisation</h3>
+        <div class="tags">
+          <span class="tag">Tableau</span><span class="tag">Power BI</span>
+          <span class="tag">Metabase</span><span class="tag">Superset</span>
+          <span class="tag">Looker</span><span class="tag">Dimensional data modelling</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Ways of Working</h3>
+        <div class="tags">
+          <span class="tag">Stakeholder management</span><span class="tag">Self-serve analytics</span>
+          <span class="tag">Prompt engineering &amp; LLM-assisted analysis</span>
+          <span class="tag">Git</span><span class="tag">Excel / Sheets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-tag">Education &amp; Certifications</div>
+    <h2>Foundation &amp; continuous learning.</h2>
+    <p class="section-sub">Engineering rigour meets a habit of self-directed upskilling.</p>
+
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <h3>National Institute of Technology Delhi</h3>
+        <div class="meta">B.Tech · Electrical &amp; Electronics Engineering</div>
+        <div class="highlight">CGPA 8.11 / 10</div>
+      </div>
+      <div class="edu-card reveal">
+        <h3>HackerRank SQL Certifications</h3>
+        <div class="meta">SQL (Basic) · SQL (Intermediate) · SQL (Advanced)</div>
+        <div class="highlight">Advanced proficiency validated</div>
+      </div>
+      <div class="edu-card reveal">
+        <h3>Introduction to Data Analysis using MS Excel</h3>
+        <div class="meta">UpGrad</div>
+        <div class="highlight">Foundational analytics toolkit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's talk data.</h2>
+      <p>I'm open to Data Science, Product and Data Analytics roles globally — Bangalore-based, relocation-ready.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:shivinmehta2@gmail.com">shivinmehta2@gmail.com →</a>
+        <a class="btn btn-ghost" href="https://drive.google.com/file/d/1BJZisfUQvk-CJejhT9WZrCnN5AvNBHPw/view?usp=drive_link" target="_blank" rel="noopener">Resume</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/shivin-mehta-481a65202/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/shivin316" target="_blank" rel="noopener">GitHub</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Shivin Mehta · Bangalore, India (open to relocation worldwide)</span>
+    <span>Built with intent, not templates.</span>
+  </div>
+</footer>
+
+<script>
+  // ===== THEME TOGGLE =====
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  themeToggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      root.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // ===== NAV SCROLL =====
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // ===== REVEAL ON SCROLL =====
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 60 + 'ms';
+    revealObs.observe(el);
+  });
+
+  // ===== STAT COUNTERS =====
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.count);
+      const isDecimal = el.dataset.count.includes('.');
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        el.textContent = isDecimal ? val.toFixed(1) : Math.round(val);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = isDecimal ? target.toFixed(1) : target;
+      }
+      requestAnimationFrame(tick);
+      statObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num [data-count]').forEach(el => statObs.observe(el));
+
+  // ===== TILT ON PROJECT CARDS =====
+  document.querySelectorAll('.project').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-5px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+</script>
+
+</body>
 </html>
